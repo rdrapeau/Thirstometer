@@ -1,24 +1,31 @@
 //login functionality, start app here
 (function() {
 	var host = "http://173.255.120.22:1337";
-	var page = "/login";
-
 	$(document).ready(function() {
 		$("#submit").click(function() {
-			var user = $("#username").val();
-			var pass = $("#password").val();
-			var obj = {
-				"user" : {
-					"username" : user,
-					"password" : pass
-				}
-			};
-			$.post(host + page, obj, loginResponse);
+			submitLogin("/login")
 		});
+
+		$("#registerSubmit").click(function() {
+			submitLogin("/register");
+		});
+
 		$("#newUser").click(function() {
 			page = "/register";
 		});
 	});
+
+	function submitLogin(page) {
+		var user = $("#username").val();
+		var pass = $("#password").val();
+		var obj = {
+			"user" : {
+				"username" : user,
+				"password" : pass
+			}
+		};
+		$.post(host + page, obj, loginResponse);
+	}
 
 	function loginResponse(data) {
 		if (data.success) {
