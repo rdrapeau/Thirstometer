@@ -49,13 +49,16 @@
 			getTransactions({}, drawChart);
 		});	
 		
-		google.load('visualization', '1', {'packages':['annotatedtimeline']});
-		google.setOnLoadCallback(function() {
-			getTransactions({}, function(data) {
+		google.load('visualization', '1', {'packages':['annotatedtimeline'], "callback" : function() {
+			console.log("Loaded!");
+		}});
+		
+		/**
+					getTransactions({}, function(data) {
 				console.log("got transactions...");
 				drawChart(data);
 			});
-		});
+**/
 
 		getTotal({}, function(data) {
 			console.log(data);
