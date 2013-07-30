@@ -177,3 +177,38 @@ exports.editUser = function(obj, field, changeTo){
 		}
 	});
 };
+
+exports.totalDrinks = function(transactions) {
+	var sum = 0;
+	for(var drink in transactions) {
+		sum += drink.amount;
+	}
+	return sum;
+}
+
+exports.drinksOnDay = function(user, day, month, year, callback) {
+	exports.findUserByName(user.username, function(back) {
+		if(back.success) {
+			var userObj = back.user;
+			var drinks = [];
+			for(var drink in userObj.drinks) {
+				if(drink.day == day && drink.month == month && drink.year == year)
+					drinks.push(drink);
+			}
+			callback(drinks);
+		}
+	});
+}
+
+exports.drinksAll = function(user, callback) {
+	exports.findUserByName(user.username, function(back) {
+		if(back.success) {
+			var userObj = back.user;
+			var drinks = [];
+			for(var drink in userObj.drinks) {
+				drinks.push(drink);
+			}
+			callback(drinks);
+		}
+	});
+}
