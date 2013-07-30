@@ -9,10 +9,6 @@
 		$("#registerSubmit").click(function() {
 			submitLogin("/register");
 		});
-
-		$("#newUser").click(function() {
-			page = "/register";
-		});
 	});
 
 	function submitLogin(page) {
@@ -75,6 +71,9 @@
 				"user" : userObject
 				"transaction" : {
 					"datetime" : timeStamp,
+					"month" : (date.getMonth()+1),
+					"year" : date.getFullYear(),
+					"day" : date.getDate(),
 					"data" : data
 				}
 			};
