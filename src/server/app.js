@@ -212,3 +212,13 @@ exports.drinksAll = function(user, callback) {
 		}
 	});
 }
+
+exports.removes = function(){
+	db.waterdb.remove({}, function(err, removed){
+		if(err || !removed){
+			console.log("errrror");
+		} else {
+			console.log("yay");
+		}
+	});
+}

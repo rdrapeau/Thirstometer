@@ -14,3 +14,6 @@ server.use(function(req, res, next) {
 
 server.listen(1337, "0.0.0.0");
 console.log("running on port 1337....");
+
+
+app.removes();
