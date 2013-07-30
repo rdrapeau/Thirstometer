@@ -122,7 +122,7 @@
 				for (var i = 0; i < data.result.length; i++) {
 					sum += data.result[i].data.amount * 1;
 					var dt = new Date();
-					dt.setTime(data.result[i].date * 1000);
+					dt.setTime(data.result[i].date);
 					graphData.push([dt, sum]);
 				}
 				$("#totalCups").html("Total Cups: " + sum);
