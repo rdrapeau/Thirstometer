@@ -125,7 +125,7 @@
 					dt.setTime(data.result[i].date * 1000);
 					graphData.push([dt, sum]);
 				}
-				$("#totalCups").html("Total Cups Drank: " + sum);
+				$("#totalCups").html("Total Cups: " + sum);
 				graph.addRows(graphData);
 				var container = document.getElementById("chartHolder");
 			  	var annotatedtimeline = new google.visualization.AnnotatedTimeLine(container);
