@@ -49,13 +49,10 @@
 			getTransactions({}, drawChart);
 		});	
 		
-		google.load('visualization', '1', {'packages':['annotatedtimeline']});
-		google.setOnLoadCallback(function() {
-			getTransactions({}, function(data) {
-				console.log("got transactions...");
-				drawChart(data);
-			});
-		});
+		google.load('visualization', '1', {'packages':['annotatedtimeline'], "callback" : function() {
+			console.log("Chart API loaded.");
+			getTransactions({}, drawChart);
+		}});
 
 		getTotal({}, function(data) {
 			console.log(data);
