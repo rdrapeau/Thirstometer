@@ -121,7 +121,7 @@
 			   	var sum = 0;
 				for (var i = 0; i < data.result.length; i++) {
 					sum += data.result[i].data.amount * 1;
-					var dt = new date();
+					var dt = new Date();
 					dt.setTime(data.result[i].date * 1000);
 					graphData.push([dt, sum]);
 				}
