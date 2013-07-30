@@ -8,7 +8,7 @@ exports.addDrink = function(obj, callback){
 	var toret ={};
 	db.users.update(
 		{"username" : obj.username},
-		{$push: {"drinks" : obj.drink}},
+		{$push: {"drinks" : obj.transaction}},
 		function(err, updated){
 			if(err || !updated) {
 				toret.success = false;
@@ -181,7 +181,7 @@ exports.editUser = function(obj, field, changeTo){
 exports.totalDrinks = function(transactions) {
 	var sum = 0;
 	for(var drink in transactions) {
-		sum += drink.amount;
+		sum += drink.data.amount;
 	}
 	return sum;
 }

@@ -68,6 +68,8 @@ server.post('/total', function(request, response){
 		if(typeof(request.body.day) != 'undefined' && typeof(request.body.month) != 'undefined' &&
 			typeof(request.body.year) != 'undefined') {
 			app.drinksOnDay(request.body.user, request.body.day, request.body.month, request.body.year, function(drinks){
+				console.log("drinks");
+				console.log(drinks);
 				var back = {};
 				if(typeof(drinks != 'undefined')) {
 					back.success = true;
@@ -81,6 +83,8 @@ server.post('/total', function(request, response){
 			});
 		} else {
 			app.drinksAll(request.body.user, function(drinks){
+				console.log("drinks");
+				console.log(drinks);
 				var back = {};
 				if(typeof(drinks != 'undefined')) {
 					back.success = true;
@@ -143,6 +147,7 @@ function logRequest(request) {
 
 server.listen(1337, "0.0.0.0");
 console.log("running on port 1337....");
+
 /*
 var regtest = {
 	"username" : "user2",
