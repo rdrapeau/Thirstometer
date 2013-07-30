@@ -4,41 +4,60 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
-    <script type="text/javascript" src="https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization', 'version':'1.1','packages':['timeline']}]}"></script>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
     <script src="js/scripts.js"></script>
 </head>
 <body>
     <div class="container">
-        <div class="navbar" style="height:90px">
-            <ul class="nav navbar-nav navbar-inverse navbar-fixed-top">
-                <li class="active"><a href="#">HOME</a></li>
-                <li><a href="#">ABOUT</a></li>
-                <li><a href="#">FAQ</a></li>
-                <div style="width:25%"></div>
-                <a data-toggle="modal" href="#login" class="btn btn-primary">LOGIN</a>
-                <a data-toggle="modal" href="#register" class="btn btn-primary">REGISTER</a>
-            </ul>
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="#" class="navbar-brand navpush">THIRSTOMETER</a>
+                <div class="nav-collapse collapse navbar-responsive-collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a data-toggle="modal" href="#login" class="navitem">LOGIN</a></li>
+                        <li><a data-toggle="modal" href="#register" class="navitem">REGISTER</a></li>
+                        <li><a href="#" class="navitem">ABOUT</a></li>
+                        <li><a href="#" class="navitem">FAQ</a></li>
+                        
+                    </ul>
+                </div>
+            </div>
         </div>
+        <div style="height:90px"></div>
         <div class="row">
             <div class="col-lg-12 text-center">
-                <h1>WHAT THE SHIT ARE YOU DRINKING?</h1>
+                <h1>WHAT ARE YOU DRINKING?</h1>
             </div>
         </div>
-        <div style="width:100%; height:50px;"></div>
-        <div class="row">
-            <div class="col-lg-3">
-                <button type="button" class="btn btn-default btn-large drinkingButton" data-amount="4.23" value="Nalgene">A WHOLE FUCKING NALGENE</button>
+        <div style="width:100%; height:100px;"></div>
+        <div class="loggedin">
+            <div class="row text-center">
+                <div class="col-lg-3">
+                    <button type="button" class="btn btn-default btn-large btn-block drinkingButton" data-amount="4.23" value="Nalgene">A WHOLE NALGENE</button>
+                </div>
+                <div class="col-lg-3">
+                    <button type="button" class="btn btn-default btn-large btn-block drinkingButton" data-amount="2.11" value="Bottle">A WATER BOTTLE</button>
+                </div>
+                <div class="col-lg-3">
+                    <button type="button" class="btn btn-default btn-large btn-block drinkingButton" data-amount="1" value="Cup">JUST A SINGLE CUP</button>
+                </div>
+                <div class="col-lg-3">
+                    <button type="button" class="btn btn-default btn-large btn-block drinkingButton" data-amount=".08" value="Sip">A LITTLE MEASLY SIP</button>
+                </div>
             </div>
-            <div class="col-lg-3">
-                <button type="button" class="btn btn-default btn-large drinkingButton" data-amount="2.11" value="Bottle">A GODDAMN WATER BOTTLE</button>
+            <div style="width:100%; height:70px;"></div>
+            <div class="row">
+                <div class="col-lg-6 col-offset-3">
+                    <button type="button" class="btn btn-default btn-large btn-block drinkingButton" data-amount=".08" value="Graph"><h2>GRAPH THIS</h2></button>
+                </div>
             </div>
-            <div class="col-lg-3">
-                <button type="button" class="btn btn-default btn-large drinkingButton" data-amount="1" value="Cup">JUST A FUCKING CUP</button>
-            </div>
-            <div class="col-lg-3">
-                <button type="button" class="btn btn-default btn-large drinkingButton" data-amount=".08" value="Sip">A LITTLE PUSSY SIP</button>
-            </div>
+            <div id="chartHolder"></div>
         </div>
     </div>
     <div class="modal fade" id="login">
@@ -46,11 +65,17 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title">LOG THE FUCK IN</h4>
+                    <h4 class="modal-title">LOG IN</h4>
                  </div>
                 <div class="modal-body">
-                    <input id="username" type="text" placeholder="Username" />
-                    <input id="password" type="password" placeholder="Password" />
+                    <div class="row">
+                        <div class="col-lg-3"><p>USERNAME: </p></div>
+                        <div class="col-lg-9"><input id="username" type="text" placeholder="USERNAME" /></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-3"><p>USERNAME: </p></div>
+                        <div class="col-lg-9"><input id="password" type="password" placeholder="PASSWORD" /></div>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <a href="#" class="btn" data-dismiss="modal">Close</a>
@@ -64,11 +89,19 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title">SIGN THE FUCK UP</h4>
+                    <h4 class="modal-title">SIGN UP</h4>
                  </div>
                 <div class="modal-body">
                     <input id="usernameRegister" type="text" placeholder="Username" />
                     <input id="passwordRegister" type="password" placeholder="Password" />
+                    <div class="row">
+                        <div class="col-lg-3"><p>USERNAME: </p></div>
+                        <div class="col-lg-9"><input id="username" type="text" placeholder="USERNAME" /></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-3"><p>USERNAME: </p></div>
+                        <div class="col-lg-9"><input id="password" type="password" placeholder="PASSWORD" /></div>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <a href="#" class="btn" data-dismiss="modal">Close</a>
