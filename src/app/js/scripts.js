@@ -50,15 +50,9 @@
 		});	
 		
 		google.load('visualization', '1', {'packages':['annotatedtimeline'], "callback" : function() {
-			console.log("Loaded!");
+			console.log("Chart API loaded.");
+			getTransactions({}, drawChart);
 		}});
-		
-		/**
-					getTransactions({}, function(data) {
-				console.log("got transactions...");
-				drawChart(data);
-			});
-**/
 
 		getTotal({}, function(data) {
 			console.log(data);
