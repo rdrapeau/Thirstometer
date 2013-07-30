@@ -95,12 +95,17 @@
 
 		function drawChart(data) {
 			if (data.success) {
-				var container = $("#chartHolder");
-				var chart = new google.visualization.Timeline(container);
-				var dataTable = new google.visualization.DataTable();
+			 	var graph = new google.visualization.DataTable();
+			  	graph.addColumn('date', 'Date');
+			   	graph.addColumn('number', 'Cups');
+			   	var graphData = [];
 				for (var i = 0; i < data.result.length; i++) {
-
+					graphData.push([new Date(data[i].year, data[i].month, data[i].day), data[i].data]);
 				}
+				graph.addRows(graphData);
+				var container = $("#chartHolder");
+			  	var annotatedtimeline = new google.visualization.AnnotatedTimeLine(container);
+			  	annotatedtimeline.draw(graph, {'displayAnnotations': true});
 			} else {
 				alert(data.response);
 			}
