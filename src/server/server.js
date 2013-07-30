@@ -20,8 +20,12 @@ server.post('/login', function(request,response){
 	}
 	app.verifyPass(request.body, function(data){
 		if(data.success){
-			response.json(data);
+			app.findUserByNameNoPass(request.body.username, function(ret){
+				data.user = ret;
+				response.json(data);
+			});
 		} else {
+			data.user = null;
 			response.json(data);
 		}
 	});
