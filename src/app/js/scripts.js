@@ -117,7 +117,7 @@
 			   	graph.addColumn('number', 'Cups');
 			   	var graphData = [];
 				for (var i = 0; i < data.result.length; i++) {
-					graphData.push([new Date(data[i].year, data[i].month, data[i].day), data[i].data]);
+					graphData.push([new Date(data.result[i].year, data.result[i].month, data.result[i].day), data.result[i].data.amount]);
 				}
 				graph.addRows(graphData);
 				var container = $("#chartHolder");
