@@ -5,7 +5,7 @@
 		$("#submit").click(function() {
 			submitLogin("/login")
 		});
-
+		
 		$("#registerSubmit").click(function() {
 			submitLogin("/register");
 		});
@@ -33,14 +33,16 @@
 	}
 
 	function mainApp(user) {
+		google.load("visualization", "1", {packages:["corechart"]});
 		var userObject = user;
 		$("#main").show();
 		$(".drinkingButton").click(handleDrinkPress);
 		$("#customSubmit").click(handleDrinkCustom);
+
 		getTotal({"day" : "30", "month" : "7", "year" : "2013"}, function(data) {
 			console.log(data);
 		});
-		
+
 		getTotal(function(data) {
 			console.log(data);
 		});
@@ -74,7 +76,7 @@
                 + date.getMinutes() + ":" 
                 + date.getSeconds();
 			var message = {
-				"user" : userObject
+				"user" : userObject,
 				"transaction" : {
 					"datetime" : timeStamp,
 					"month" : (date.getMonth()+1),
@@ -87,6 +89,7 @@
 		}
 
 		function getTotal(data, callback) {
+			data.user = userObject;
 			$.post(host + "/total", data, callback);	
 		}
 	}
