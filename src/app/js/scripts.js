@@ -31,9 +31,9 @@
 	}
 
 	function loginResponse(data) {
+		$("#login").modal("hide");
+		$("#register").modal("hide");
 		if (data.success) {
-			$("#login").modal("hide");
-			$("#register").modal("hide");
 			mainApp(data.user);
 		} else {
 			alert(data.response);
