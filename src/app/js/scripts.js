@@ -121,11 +121,11 @@
 			   	var sum = 0;
 				for (var i = 0; i < data.result.length; i++) {
 					sum += data.result[i].data.amount * 1;
-					var dt = new date();
-					dt.setTime(data.result[i].date * 1000);
+					var dt = new Date();
+					dt.setTime(data.result[i].date);
 					graphData.push([dt, sum]);
 				}
-				$("#totalCups").html("Total Cups Drank: " + sum);
+				$("#totalCups").html("Total Cups: " + sum);
 				graph.addRows(graphData);
 				var container = document.getElementById("chartHolder");
 			  	var annotatedtimeline = new google.visualization.AnnotatedTimeLine(container);
