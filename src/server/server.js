@@ -68,7 +68,7 @@ server.post('/total', function(request, response){
 					back.response = "";
 				} else {
 					back.success = false;
-					back.response = "server problem getting total drinks";
+					back.response = "server problem getting drinks";
 				}
 				response.json(back);
 			});
@@ -103,7 +103,7 @@ server.post('/data', function(request, response){
 					back.response = "";
 				} else {
 					back.success = false;
-					back.response = "server problem getting total drinks";
+					back.response = "server problem getting drinks";
 				}
 				response.json(back);
 			});
