@@ -42,7 +42,7 @@
 
 	function mainApp(user) {
 		var userObject = user;
-		$("#main").show();
+		$(".login").show();
 		$(".drinkingButton").click(handleDrinkPress);
 		$("#customSubmit").click(handleDrinkCustom);
 
