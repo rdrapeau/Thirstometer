@@ -42,9 +42,17 @@
 
 	function mainApp(user) {
 		var userObject = user;
-		$(".login").show();
+		$(".loggedin").show();
 		$(".drinkingButton").click(handleDrinkPress);
 		$("#customSubmit").click(handleDrinkCustom);
+		$("#graphButton").click(function() {
+			getTransactions({}, drawChart);
+		});	
+		
+		google.load('visualization', '1', {'packages':['annotatedtimeline']});
+		google.setOnLoadCallback(function() {
+			getTransactions({}, drawChart);
+		});
 
 		getTotal({}, function(data) {
 			console.log(data);
