@@ -20,7 +20,6 @@ server.post('/login', function(request,response){
 	}
 	app.verifyPass(request.body, function(data){
 		if(data.success){
-			req.session.loggedIn = true;
 			response.json(data);
 		} else {
 			response.json(data);
