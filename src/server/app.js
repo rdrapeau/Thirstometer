@@ -180,9 +180,9 @@ exports.editUser = function(obj, field, changeTo){
 
 exports.totalDrinks = function(transactions) {
 	var sum = 0;
-	transactions.forEach(function(each){
-		sum += each.data.amount;
-	});
+	for (var i = 0; i < transactions.length; i++){
+		sum+=transactions[i].data.amount;
+	}
 	return sum;
 }
 
@@ -202,8 +202,12 @@ exports.drinksOnDay = function(user, day, month, year, callback) {
 
 exports.drinksAll = function(user, callback) {
 	exports.findUserByName(user.username, function(back) {
+		console.log("back");
+		console.log(back);
 		if(back.success) {
-			callback(back.drinks);
+			callback(back.user.drinks);
+		} else {
+			callback([]);
 		}
 	});
 }
