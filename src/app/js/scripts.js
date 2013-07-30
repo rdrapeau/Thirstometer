@@ -114,16 +114,14 @@
 			console.log("drawig");
 			if (data.success) {
 			 	var graph = new google.visualization.DataTable();
-			 	console.log("Adding column");
 			  	graph.addColumn('date', 'Date');
 			   	graph.addColumn('number', 'Cups');
 			   	var graphData = [];
 				for (var i = 0; i < data.result.length; i++) {
-					console.log("Adding Row");
 					graphData.push([new Date(data.result[i].year, data.result[i].month, data.result[i].day), data.result[i].data.amount * 1]);
 				}
 				graph.addRows(graphData);
-				var container = $("#chartHolder");
+				var container = document.getElementById("chartHolder");
 			  	var annotatedtimeline = new google.visualization.AnnotatedTimeLine(container);
 			  	annotatedtimeline.draw(graph, {'displayAnnotations': true});
 			} else {
