@@ -44,9 +44,10 @@ server.post('/drink', function(request, response){
 });
 
 
-server.listen(1337);
 
-
+server.listen(1337, "0.0.0.0");
+console.log("running on port 1337");
+/*
 var regtest = {
 	"username" : "user2",
 	"password" : "pass2"
@@ -65,7 +66,7 @@ var drtest = {
 	}
 };
 
-/*
+
 if(regtest.password != null){
 	regtest.password = app.makeHash(regtest);
 }
