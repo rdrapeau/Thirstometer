@@ -180,9 +180,9 @@ exports.editUser = function(obj, field, changeTo){
 
 exports.totalDrinks = function(transactions) {
 	var sum = 0;
-	for(var drink in transactions) {
-		sum += drink.data.amount;
-	}
+	transactions.forEach(function(each){
+		sum += each.data.amount;
+	});
 	return sum;
 }
 
@@ -191,10 +191,10 @@ exports.drinksOnDay = function(user, day, month, year, callback) {
 		if(back.success) {
 			var userObj = back.user;
 			var drinks = [];
-			for(var drink in userObj.drinks) {
+			back.user.drinks.forEach(function(each){
 				if(drink.day == day && drink.month == month && drink.year == year)
 					drinks.push(drink);
-			}
+			});
 			callback(drinks);
 		}
 	});
@@ -203,12 +203,7 @@ exports.drinksOnDay = function(user, day, month, year, callback) {
 exports.drinksAll = function(user, callback) {
 	exports.findUserByName(user.username, function(back) {
 		if(back.success) {
-			var userObj = back.user;
-			var drinks = [];
-			for(var drink in userObj.drinks) {
-				drinks.push(drink);
-			}
-			callback(drinks);
+			callback(back.drinks);
 		}
 	});
 }
