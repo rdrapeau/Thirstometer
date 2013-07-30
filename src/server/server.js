@@ -5,6 +5,11 @@ var server = express();
 server.use(express.bodyParser());
 server.use(express.cookieParser('dfjaoekdfsjeo'));
 server.use(express.session());
+server.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  next();
+});
 
 server.post('/login', function(request,response){
 	logRequest(request);
