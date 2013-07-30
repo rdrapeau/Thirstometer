@@ -38,12 +38,9 @@
 		$("#main").show();
 		$(".drinkingButton").click(handleDrinkPress);
 		$("#customSubmit").click(handleDrinkCustom);
+		google.setOnLoadCallback(drawChart);
 
-		getTotal({"day" : "30", "month" : "7", "year" : "2013"}, function(data) {
-			console.log(data);
-		});
-
-		getTotal(function(data) {
+		getTotal({}, function(data) {
 			console.log(data);
 		});
 
@@ -91,6 +88,22 @@
 		function getTotal(data, callback) {
 			data.user = userObject;
 			$.post(host + "/total", data, callback);	
+		}
+
+		function getTransactions(data, callback) {
+			data.user= userObject;
+			$.post(host + "/data", data, callback);
+		}
+
+		function drawChart() {
+			getTransactions({}, function(data) {
+				if (data.success) {
+					var transactions = data.result;
+					for (var i = 0; i < transactions.length; i++) {
+						
+					}
+				}
+			});
 		}
 	}
 }());
