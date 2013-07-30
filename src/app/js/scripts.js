@@ -5,7 +5,7 @@
 		$("#submit").click(function() {
 			submitLogin("/login")
 		});
-
+		
 		$("#registerSubmit").click(function() {
 			submitLogin("/register");
 		});
@@ -32,12 +32,17 @@
 		}
 	}
 
-
 	function mainApp(user) {
+		google.load("visualization", "1", {packages:["corechart"]});
 		var userObject = user;
 		$("#main").show();
 		$(".drinkingButton").click(handleDrinkPress);
 		$("#customSubmit").click(handleDrinkCustom);
+		google.setOnLoadCallback(drawChart);
+
+		getTotal({}, function(data) {
+			console.log(data);
+		});
 
 		function handleDrinkPress() {
 			var amount = $(this).data('amount');
@@ -68,7 +73,7 @@
                 + date.getMinutes() + ":" 
                 + date.getSeconds();
 			var message = {
-				"user" : userObject
+				"user" : userObject,
 				"transaction" : {
 					"datetime" : timeStamp,
 					"month" : (date.getMonth()+1),
@@ -79,6 +84,26 @@
 			};
 			$.post(host + "/drink", message, callback);
 		}
-		
+
+		function getTotal(data, callback) {
+			data.user = userObject;
+			$.post(host + "/total", data, callback);	
+		}
+
+		function getTransactions(data, callback) {
+			data.user= userObject;
+			$.post(host + "/data", data, callback);
+		}
+
+		function drawChart() {
+			getTransactions({}, function(data) {
+				if (data.success) {
+					var transactions = data.result;
+					for (var i = 0; i < transactions.length; i++) {
+						
+					}
+				}
+			});
+		}
 	}
 }());
