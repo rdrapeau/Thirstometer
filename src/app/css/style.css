@@ -17,7 +17,9 @@ h1{
 }
 
 #chartHolder{
+	padding-top: 50px;
 	width: 1000px;
 	height: 400px;
+	margin: 0 auto;
 }
 
