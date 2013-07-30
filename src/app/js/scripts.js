@@ -32,8 +32,8 @@
 
 	function loginResponse(data) {
 		if (data.success) {
-			$("#login").hide();
-			$(".modal").hide();
+			$("#login").modal("hide");
+			$("#register").modal("hide");
 			mainApp(data.user);
 		} else {
 			alert(data.response);
