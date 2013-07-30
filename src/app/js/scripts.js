@@ -33,12 +33,10 @@
 	}
 
 	function mainApp(user) {
-		google.load("visualization", "1", {packages:["corechart"]});
 		var userObject = user;
 		$("#main").show();
 		$(".drinkingButton").click(handleDrinkPress);
 		$("#customSubmit").click(handleDrinkCustom);
-		google.setOnLoadCallback(drawChart);
 
 		getTotal({}, function(data) {
 			console.log(data);
@@ -95,15 +93,16 @@
 			$.post(host + "/data", data, callback);
 		}
 
-		function drawChart() {
-			getTransactions({}, function(data) {
-				if (data.success) {
-					var transactions = data.result;
-					for (var i = 0; i < transactions.length; i++) {
-						
-					}
+		function drawChart(data) {
+			if (data.success) {
+				var container = $("#chartHolder");
+				var chart = new google.visualization.Timeline(container);
+				for (var i = 0; i < data.result.length; i++) {
+
 				}
-			});
+			} else {
+				alert(data.response);
+			}
 		}
 	}
 }());
