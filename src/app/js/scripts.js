@@ -51,7 +51,10 @@
 		
 		google.load('visualization', '1', {'packages':['annotatedtimeline']});
 		google.setOnLoadCallback(function() {
-			getTransactions({}, drawChart);
+			getTransactions({}, function(data) {
+				console.log("got transactions...");
+				drawChart(data);
+			});
 		});
 
 		getTotal({}, function(data) {
@@ -110,6 +113,7 @@
 		}
 
 		function drawChart(data) {
+			console.log("drawig");
 			if (data.success) {
 			 	var graph = new google.visualization.DataTable();
 			  	graph.addColumn('date', 'Date');
