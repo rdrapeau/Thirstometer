@@ -32,12 +32,18 @@
 		}
 	}
 
-
 	function mainApp(user) {
 		var userObject = user;
 		$("#main").show();
 		$(".drinkingButton").click(handleDrinkPress);
 		$("#customSubmit").click(handleDrinkCustom);
+		getTotal({"day" : "30", "month" : "7", "year" : "2013"}, function(data) {
+			console.log(data);
+		});
+		
+		getTotal(function(data) {
+			console.log(data);
+		});
 
 		function handleDrinkPress() {
 			var amount = $(this).data('amount');
@@ -79,6 +85,9 @@
 			};
 			$.post(host + "/drink", message, callback);
 		}
-		
+
+		function getTotal(data, callback) {
+			$.post(host + "/total", data, callback);	
+		}
 	}
 }());
