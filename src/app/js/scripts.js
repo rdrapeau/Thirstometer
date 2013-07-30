@@ -13,14 +13,14 @@
 					"password" : pass
 				}
 			};
-			$.post(host + page, obj, callBack);
+			$.post(host + page, obj, loginResponse);
 		});
 		$("#newUser").click(function() {
 			page = "/register";
 		});
 	});
 
-	function callBack(data) {
+	function loginResponse(data) {
 		if (data.success) {
 			$("#login").hide();
 			mainApp(data.user);
@@ -40,12 +40,14 @@
 			var amount = $(this).data('amount');
 			sendDrinkTransaction({"amount" : amount}, handleDrinkResponse);
 		}
+
 		function handleDrinkCustom() {
 			if($("#drinkingField").val()) {
 				var amount = $("#drinkingField").val();
 				sendDrinkTransaction({"amount" : amount}, handleDrinkResponse);
 			}
 		}
+
 		function handleDrinkResponse(data) {
 			if(data.success) {
 				//do something
