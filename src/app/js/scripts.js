@@ -34,12 +34,24 @@
 		var userObject = user;
 		$("#main").show();
 		$(".drinkingButton").click(handleDrinkPress);
+		$("#customSubmit").click(handleDrinkCustom);
 
 		function handleDrinkPress() {
 			var amount = $(this).data('amount');
-			sendDrinkTransaction({"amount" : amount}, function(data) {
-
-			});
+			sendDrinkTransaction({"amount" : amount}, handleDrinkResponse);
+		}
+		function handleDrinkCustom() {
+			if($("#drinkingField").val()) {
+				var amount = $("#drinkingField").val();
+				sendDrinkTransaction({"amount" : amount}, handleDrinkResponse);
+			}
+		}
+		function handleDrinkResponse(data) {
+			if(data.success) {
+				//do something
+			} else {
+				alert(data.response);
+			}
 		}
 
 		function sendDrinkTransaction(data, callback) {
