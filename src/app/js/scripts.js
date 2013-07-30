@@ -3,17 +3,24 @@
 	var host = "http://173.255.120.22:1337";
 	$(document).ready(function() {
 		$("#submit").click(function() {
-			submitLogin("/login")
+			submitLogin("/login", false)
 		});
 		
 		$("#registerSubmit").click(function() {
-			submitLogin("/register");
+			submitLogin("/register", true);
 		});
 	});
 
-	function submitLogin(page) {
-		var user = $("#username").val();
-		var pass = $("#password").val();
+	function submitLogin(page, newUser) {
+		var user = "";
+		var pass = "";
+		if (newUser) {
+			user = $("#usernameRegister").val();
+			pass = $("#passwordRegister").val();
+		} else {
+			user = $("#username").val();
+			pass = $("#password").val();
+		}
 		var obj = {
 			"user" : {
 				"username" : user,
