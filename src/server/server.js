@@ -36,7 +36,15 @@ server.post('/register', function(request,response){
 		request.body.password = app.makeHash(request.body);
 	}
 	app.addUser(request.body, function(back){
-		response.json(back);
+		if(back.success){
+			app.findUserByNameNoPass(request.body.username, function(ret){
+				back.user = ret;
+				response.json(back);
+			});
+		} else {
+			back.user = null;
+			response.json(back);
+		}
 	});
 });
 
