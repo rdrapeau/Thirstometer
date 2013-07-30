@@ -118,8 +118,10 @@
 			  	graph.addColumn('date', 'Date');
 			   	graph.addColumn('number', 'Cups');
 			   	var graphData = [];
+			   	var sum = 0;
 				for (var i = 0; i < data.result.length; i++) {
-					graphData.push([new Date(data.result[i].date * 1000), data.result[i].data.amount * 1]);
+					sum += data.result[i].data.amount * 1;
+					graphData.push([new Date(data.result[i].date * 1000), sum]);
 				}
 				graph.addRows(graphData);
 				var container = document.getElementById("chartHolder");
