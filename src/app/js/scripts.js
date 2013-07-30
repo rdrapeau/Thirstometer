@@ -110,6 +110,7 @@
 		}
 
 		function drawChart(data) {
+			alert("DRAWING CHART NOW");
 			if (data.success) {
 			 	var graph = new google.visualization.DataTable();
 			  	graph.addColumn('date', 'Date');
