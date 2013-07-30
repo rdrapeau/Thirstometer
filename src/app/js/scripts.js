@@ -33,6 +33,7 @@
 	function loginResponse(data) {
 		if (data.success) {
 			$("#login").hide();
+			$(".modal").hide();
 			mainApp(data.user);
 		} else {
 			alert(data.response);
