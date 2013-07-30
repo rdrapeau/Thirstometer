@@ -97,6 +97,7 @@
 			if (data.success) {
 				var container = $("#chartHolder");
 				var chart = new google.visualization.Timeline(container);
+				var dataTable = new google.visualization.DataTable();
 				for (var i = 0; i < data.result.length; i++) {
 
 				}
