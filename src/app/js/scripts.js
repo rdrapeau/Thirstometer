@@ -1,5 +1,6 @@
 (function() {
 	var host = "http://173.255.120.22:1337";
+	var page = "/login";
 
 	$(document).ready(function() {
 		$("#submit").click(function() {
@@ -11,16 +12,19 @@
 					"password" : pass
 				}
 			};
-			$.post(host + "/login", obj, callBack);
+			$.post(host + page, obj, callBack);
+		});
+		$("#newUser").click(function() {
+			page = "/register";
 		});
 	});
 
 	function callBack(data) {
 		if (data.success) {
 			$("#login").hide();
-			$("#main").show();
+			mainApp(data.user);
 		} else {
-			
+			alert(data.response);
 		}
 	}
 }());
