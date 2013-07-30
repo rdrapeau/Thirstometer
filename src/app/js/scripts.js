@@ -90,6 +90,7 @@
 			var message = {
 				"user" : userObject,
 				"transaction" : {
+					"date" : date,
 					"datetime" : timeStamp,
 					"month" : (date.getMonth()+1),
 					"year" : date.getFullYear(),
@@ -118,7 +119,7 @@
 			   	graph.addColumn('number', 'Cups');
 			   	var graphData = [];
 				for (var i = 0; i < data.result.length; i++) {
-					graphData.push([new Date(data.result[i].year, data.result[i].month, data.result[i].day), data.result[i].data.amount * 1]);
+					graphData.push([data.result[i].date, data.result[i].data.amount * 1]);
 				}
 				graph.addRows(graphData);
 				var container = document.getElementById("chartHolder");
