@@ -10,7 +10,7 @@ server.use(function(req, res, next) {
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
   next();
 });
-
+//asdfadsfasdf
 server.post('/login', function(request,response){
 	logRequest(request);
 	request.accepts('json');
