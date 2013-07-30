@@ -18,9 +18,9 @@ server.post('/login', function(request,response){
 	if(request.body.password != null){
 		request.body.password = app.makeHash(request.body);
 	}
-	app.verifyPass(request.body, function(data){
+	app.verifyPass(request.body.user, function(data){
 		if(data.success){
-			app.findUserByNameNoPass(request.body.username, function(ret){
+			app.findUserByNameNoPass(request.body.user.username, function(ret){
 				data.user = ret;
 				response.json(data);
 			});
@@ -38,16 +38,8 @@ server.post('/register', function(request,response){
 	if(request.body.password != null){
 		request.body.password = app.makeHash(request.body);
 	}
-	app.addUser(request.body, function(back){
-		if(back.success){
-			app.findUserByNameNoPass(request.body.username, function(ret){
-				back.user = ret;
-				response.json(back);
-			});
-		} else {
-			back.user = null;
-			response.json(back);
-		}
+	app.addUser(request.body.user, function(back){
+		response.json(back);
 	});
 });
 
