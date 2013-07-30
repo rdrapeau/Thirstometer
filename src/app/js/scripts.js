@@ -48,6 +48,7 @@
 		$("#customSubmit").click(handleDrinkCustom);
 		$("#graphButton").click(function() {
 			getTransactions({}, drawChart);
+			$("html, body").animate({ scrollTop: $(document).height() }, "slow");
 		});	
 		
 		google.load('visualization', '1', {'packages':['annotatedtimeline'], "callback" : function() {
