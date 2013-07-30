@@ -7,7 +7,7 @@ var ObjectId = db.ObjectId;
 exports.addDrink = function(obj, callback){
 	var toret ={};
 	db.users.update(
-		{"username" : obj.username},
+		{"username" : obj.user.username},
 		{$push: {"drinks" : obj.transaction}},
 		function(err, updated){
 			if(err || !updated) {
@@ -214,7 +214,7 @@ exports.drinksAll = function(user, callback) {
 }
 
 exports.removes = function(){
-	db.waterdb.remove({}, function(err, removed){
+	db.users.remove({}, function(err, removed){
 		if(err || !removed){
 			console.log("errrror");
 		} else {

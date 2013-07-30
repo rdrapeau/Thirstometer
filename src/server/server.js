@@ -21,7 +21,7 @@ server.post('/login', function(request,response){
 	app.verifyPass(request.body.user, function(data){
 		if(data.success){
 			app.findUserByNameNoPass(request.body.user.username, function(ret){
-				data.user = ret;
+				data.user = ret.user;
 				response.json(data);
 			});
 		} else {
@@ -55,6 +55,7 @@ server.post('/drink', function(request, response){
 });
 
 server.post('/total', function(request, response){
+	console.log("TOTAL");
 	logRequest(request);
 	if(request.body.user != null) {
 		if(typeof(request.body.day) != 'undefined' && typeof(request.body.month) != 'undefined' &&
@@ -95,6 +96,7 @@ server.post('/total', function(request, response){
 });
 
 server.post('/data', function(request, response){
+	console.log("DATA");
 	logRequest(request);
 	if(request.body.user != null) {
 		if(typeof(request.body.day) != 'undefined' && typeof(request.body.month) != 'undefined' &&
