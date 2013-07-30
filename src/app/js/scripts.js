@@ -113,7 +113,6 @@
 		}
 
 		function drawChart(data) {
-			console.log("drawig");
 			if (data.success) {
 			 	var graph = new google.visualization.DataTable();
 			  	graph.addColumn('date', 'Date');
@@ -124,6 +123,7 @@
 					sum += data.result[i].data.amount * 1;
 					graphData.push([new Date(data.result[i].date * 1000), sum]);
 				}
+				$("#totalCups").html("Total Cups Drank: " + sum);
 				graph.addRows(graphData);
 				var container = document.getElementById("chartHolder");
 			  	var annotatedtimeline = new google.visualization.AnnotatedTimeLine(container);
