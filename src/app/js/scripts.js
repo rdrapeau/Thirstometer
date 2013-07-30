@@ -48,6 +48,11 @@
 		$("#graphButton").click(function() {
 			getTransactions({}, drawChart);
 		});	
+		
+		google.load('visualization', '1', {'packages':['annotatedtimeline']});
+		google.setOnLoadCallback(function() {
+			getTransactions({}, drawChart);
+		});
 
 		getTotal({}, function(data) {
 			console.log(data);
