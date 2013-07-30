@@ -72,7 +72,7 @@
 
 		function handleDrinkResponse(data) {
 			if(data.success) {
-				//do something
+				console.log("Drink recorded");
 			} else {
 				alert(data.response);
 			}
