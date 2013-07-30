@@ -33,6 +33,7 @@
 	function loginResponse(data) {
 		$("#login").modal("hide");
 		$("#register").modal("hide");
+		$(".loggedout").hide();
 		if (data.success) {
 			mainApp(data.user);
 		} else {
@@ -72,7 +73,7 @@
 
 		function handleDrinkResponse(data) {
 			if(data.success) {
-				//do something
+				console.log("Drink recorded");
 			} else {
 				alert(data.response);
 			}
@@ -113,11 +114,13 @@
 			console.log("drawig");
 			if (data.success) {
 			 	var graph = new google.visualization.DataTable();
+			 	console.log("Adding column");
 			  	graph.addColumn('date', 'Date');
 			   	graph.addColumn('number', 'Cups');
 			   	var graphData = [];
 				for (var i = 0; i < data.result.length; i++) {
-					graphData.push([new Date(data[i].year, data[i].month, data[i].day), data[i].data]);
+					console.log("Adding Row");
+					graphData.push([new Date(data.result[i].year, data.result[i].month, data.result[i].day), data.result[i].data.amount * 1]);
 				}
 				graph.addRows(graphData);
 				var container = $("#chartHolder");
