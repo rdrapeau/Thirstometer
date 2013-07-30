@@ -7,6 +7,7 @@ server.use(express.cookieParser('dfjaoekdfsjeo'));
 server.use(express.session());
 
 server.post('/login', function(request,response){
+	logRequest(request);
 	request.accepts('json');
 	response.set('Content-Type', 'application/json');
 	if(request.body.password != null){
@@ -23,6 +24,7 @@ server.post('/login', function(request,response){
 });
 
 server.post('/register', function(request,response){
+	logRequest(request);
 	request.accepts('json');
 	response.set('Content-Type', 'application/json');
 	if(request.body.password != null){
@@ -34,6 +36,7 @@ server.post('/register', function(request,response){
 });
 
 server.post('/drink', function(request, response){
+	logRequest(request);
 	if(request.body.user != null) {
 		app.addDrink(request.body, function(back){
 			response.json(back);
@@ -44,6 +47,7 @@ server.post('/drink', function(request, response){
 });
 
 server.post('/total', function(request, response){
+	logRequest(request);
 	if(request.body.user != null) {
 		if(typeof(request.body.day) != 'undefined' && typeof(request.body.month) != 'undefined' &&
 			typeof(request.body.year) != 'undefined') {
@@ -79,6 +83,7 @@ server.post('/total', function(request, response){
 });
 
 server.post('/data', function(request, response){
+	logRequest(request);
 	if(request.body.user != null) {
 		if(typeof(request.body.day) != 'undefined' && typeof(request.body.month) != 'undefined' &&
 			typeof(request.body.year) != 'undefined') {
@@ -112,6 +117,13 @@ server.post('/data', function(request, response){
 		response.json({"success" : false, "response" : "please log in"});
 	}
 });
+
+function logRequest(request) {
+	console.log("-----------REQUEST MADE-----------");
+	console.log("-----------PARAMETERS-------------");
+	console.log(request.body);
+	console.log("----------------------------------");
+}
 
 server.listen(1337, "0.0.0.0");
 console.log("running on port 1337....");
